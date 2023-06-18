@@ -14,7 +14,6 @@ class MPU:
         master_port,
         backend
     ):
-        pass
         if not torch.distributed.is_initialized():
             os.environ["MASTER_ADDR"] = str(master_addr)
             os.environ["MASTER_PORT"] = str(master_port)
@@ -26,19 +25,19 @@ class MPU:
                 backend=backend,
             )
 
-        current_rank = torch.distributed.get_rank()
-        world_size = torch.distributed.get_world_size()
-        self.debug = True
+        # current_rank = torch.distributed.get_rank()
+        # world_size = torch.distributed.get_world_size()
+        # self.debug = True
 
-        self.num_pipeline_model_parallel_groups = world_size // pipeline_model_parallel_size
-        self._data_paralell_group = None
+        # self.num_pipeline_model_parallel_groups = world_size // pipeline_model_parallel_size
+        # self._data_paralell_group = None
 
-        # init data parallel group
-        self.init_data_parallel_group(
-            rank=current_rank,
-            tensor_model_parallel_size=tensor_model_parallel_size,
-            pipeline_model_parallel_size=pipeline_model_parallel_size
-        )
+        # # init data parallel group
+        # self.init_data_parallel_group(
+        #     rank=current_rank,
+        #     tensor_model_parallel_size=tensor_model_parallel_size,
+        #     pipeline_model_parallel_size=pipeline_model_parallel_size
+        # )
         # init tensor parallel and pipeline paralell groups
 
     # def set_device(self, rank):
