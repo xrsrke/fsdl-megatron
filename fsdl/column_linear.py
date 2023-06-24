@@ -93,7 +93,7 @@ def run_parallel(rank, world_size, input_size, output_size, input):
     non_parallel_output = compute_non_parallel_output(model, input)
 
     print(f"rank: {rank}, output.shape: {parallel_output.shape}, non_parallel_output.shape: {non_parallel_output.shape}")
-    print(f"Is output correct? {torch.allclose(parallel_output, non_parallel_output, rtol=1e-2)}")
+    print(f"Is output correct? {torch.allclose(parallel_output, non_parallel_output, rtol=1e-3)}")
     torch.distributed.destroy_process_group()
 
 
